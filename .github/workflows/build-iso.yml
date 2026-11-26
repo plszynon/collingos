@@ -1,0 +1,40 @@
+name: Build CollingOS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space on runner
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Build ISO inside Debian trixie container
+        run: |
+          docker run --rm --privileged -v "$PWD":/work -w /work debian:trixie \
+            bash -c "apt-get update && apt-get install -y ca-certificates && bash build.sh"
+
+      - name: Show result
+        run: |
+          sudo chown -R "$USER" . || true
+          ls -lh ./*.iso
+          sha256sum ./*.iso | tee SHA256SUMS
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: CollingOS-iso
+          path: |
+            *.iso
+            SHA256SUMS
+            build.log
+          retention-days: 30
+          compression-level: 0

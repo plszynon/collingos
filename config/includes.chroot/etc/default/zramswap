@@ -1,0 +1,4 @@
+# CollingOS: compressed RAM swap, good for 4 GB machines
+ALGO=zstd
+PERCENT=50
+PRIORITY=100

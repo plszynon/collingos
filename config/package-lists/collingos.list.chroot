@@ -1,0 +1,51 @@
+# --- Live system ---
+live-boot
+live-config
+live-config-systemd
+# --- Desktop (XFCE, light) ---
+xserver-xorg
+xserver-xorg-input-libinput
+xfce4
+xfce4-terminal
+xfce4-power-manager
+xfce4-battery-plugin
+xfce4-pulseaudio-plugin
+xfce4-taskmanager
+thunar
+thunar-archive-plugin
+mousepad
+xarchiver
+ristretto
+lightdm
+lightdm-gtk-greeter
+dbus-x11
+# --- Network / Bluetooth / Audio ---
+network-manager
+network-manager-gnome
+blueman
+pipewire
+pipewire-pulse
+wireplumber
+pavucontrol
+# --- Apps ---
+firefox-esr
+synaptic
+htop
+# --- Graphics (open drivers + Vulkan) ---
+mesa-vulkan-drivers
+mesa-utils
+# --- Firmware / microcode (real Debian packages) ---
+firmware-linux
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-misc-nonfree
+intel-microcode
+amd64-microcode
+# --- Memory / security ---
+zram-tools
+ufw
+unattended-upgrades
+# --- Installer (graphical) ---
+calamares
+calamares-settings-debian

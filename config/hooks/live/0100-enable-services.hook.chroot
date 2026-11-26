@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+systemctl enable NetworkManager || true
+systemctl enable zramswap || true
+systemctl enable ufw || true
+ufw default deny incoming || true
+ufw default allow outgoing || true
+ufw --force enable || true
